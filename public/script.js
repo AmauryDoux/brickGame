@@ -6,7 +6,7 @@ function getRandomArbitrary(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 var y = canvas.height - 30;
-var tab = [-4, -3,-2, -1, -0, 1, 2, 3, 4]
+var tab = [-4, -3, -2, -1, -0, 1, 2, 3, 4]
 var dx = getRandomArbitrary(-10, 10);
 var dy = getRandomArbitrary(-10, 10);
 var i = 0;
@@ -39,6 +39,8 @@ var brickOffsetLeft = 30;
 var score = 0;
 var lives = 3;
 var bricks = [];
+let btn = document.getElementById("btn");
+btn.addEventListener("click", Refresh)
 for (c = 0; c < brickColumnCount; c++) {
     bricks[c] = [];
     for (r = 0; r < brickRowCount; r++) {
@@ -75,6 +77,9 @@ function keyUpHandler(e) {
         leftPressed = false;
     }
 }
+function Refresh() {
+    document.location.reload();
+}
 function collisionDetection() {
     for (c = 0; c < brickColumnCount; c++) {
         for (r = 0; r < brickRowCount; r++) {
@@ -85,7 +90,6 @@ function collisionDetection() {
                     b.status = 0;
                     score++;
                     if (score == brickRowCount * brickColumnCount) {
-                        document.location.reload();
                     }
                 }
             }
@@ -155,7 +159,7 @@ function draw() {
         } else {
             lives--;
             if (!lives) {
-                document.location.reload();
+                return false;
             } else {
                 x = canvas.width / 2;
                 y = canvas.height - 30;
