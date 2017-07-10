@@ -2,9 +2,28 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var ballRadius = 10;
 var x = canvas.width / 2;
+function getRandomArbitrary(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
 var y = canvas.height - 30;
-var dx = 4;
-var dy = -4;
+var tab = [-4, -3,-2, -1, -0, 1, 2, 3, 4]
+var dx = getRandomArbitrary(-10, 10);
+var dy = getRandomArbitrary(-10, 10);
+var i = 0;
+while (i < tab.length) {
+    console.log(dx, dy)
+    if (dx == tab[i]) {
+        console.log("je relance")
+        dx = getRandomArbitrary(-10, 10);
+        i = -1
+    }
+    if (dy == tab[i]) {
+        console.log("je relance")
+        dy = getRandomArbitrary(-10, 10);
+        i = -1
+    }
+    i++
+}
 var paddleHeight = 10;
 var paddleWidth = 75;
 var paddleX = (canvas.width - paddleWidth) / 2;
@@ -140,17 +159,33 @@ function draw() {
             } else {
                 x = canvas.width / 2;
                 y = canvas.height - 30;
-                dx = 4;
-                dy = -4;
+                dx = getRandomArbitrary(-10, 10);
+                dy = getRandomArbitrary(-10, 10);
+                i = 0;
+                while (i < tab.length) {
+                    console.log(dx, dy)
+                    if (dx == tab[i]) {
+                        console.log("je relance")
+                        dx = getRandomArbitrary(-10, 10);
+                        i = -1
+                    }
+                    if (dy == tab[i]) {
+                        console.log("je relance")
+                        dy = getRandomArbitrary(-10, 10);
+                        i = -1
+                    }
+
+                    i++
+                }
                 paddleX = (canvas.width - paddleWidth) / 2;
             }
         }
     }
 
     if (rightPressed && paddleX < canvas.width - paddleWidth) {
-        paddleX += 7;
+        paddleX += 12;
     } else if (leftPressed && paddleX > 0) {
-        paddleX -= 7;
+        paddleX -= 12;
     }
 
     x += dx;
